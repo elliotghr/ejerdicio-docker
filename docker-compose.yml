@@ -5,4 +5,16 @@ services:
     image: codeigniter-test:1.0
     ports:
       - 80:80
-  
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: ejercicio
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+    volumes:
+      - codeigniter-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+volumes:
+  codeigniter-data:
+    driver: local
